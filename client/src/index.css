@@ -1,0 +1,42 @@
+@import "tailwindcss";
+
+:root {
+  --primary: #6366f1;
+  --bg-dark: #020617;
+}
+
+body {
+  background-color: #020617;
+  color: #f8fafc;
+  margin: 0;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  scrollbar-gutter: stable;
+}
+
+.glass {
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(12px) saturate(150%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-header {
+  background: rgba(2, 6, 23, 0.85);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Custom Utilities that Tailwind might miss if config is flaky */
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: #334155; }
