@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import api from '../api/axios';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Mail, Lock, User, UserPlus, ArrowLeft, Sparkles, BookOpen, Eye, EyeOff, ShieldCheck, CheckCircle2, XCircle } from 'lucide-react';
+import { Mail, Lock, User, UserPlus, ArrowLeft, Sparkles, BookOpen, Eye, EyeOff, ShieldCheck, CheckCircle2, XCircle, GraduationCap } from 'lucide-react';
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -67,84 +67,98 @@ const Register = () => {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen p-6 bg-[#020617] text-white">
+    <div className="flex justify-center items-center min-h-screen p-4 md:p-12 bg-[#020617] text-slate-300">
       <motion.div 
-        initial={{ opacity: 0, scale: 0.9 }}
+        initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.5 }}
-        className="glass w-full max-w-4xl flex flex-col md:flex-row shadow-2xl overflow-hidden rounded-[24px]"
+        transition={{ duration: 0.6 }}
+        className="glass w-full max-w-5xl flex flex-col lg:flex-row shadow-2xl overflow-hidden rounded-[40px] border border-white/5"
       >
         {/* Left Branding panel */}
-        <div className="hidden md:flex md:w-2/5 bg-indigo-600 p-12 flex-col justify-between relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -translate-y-16 translate-x-16" />
-          <div className="absolute bottom-0 left-0 w-24 h-24 bg-white/10 rounded-full translate-y-12 -translate-x-12" />
+        <div className="hidden lg:flex lg:w-2/5 bg-indigo-600 p-16 flex-col justify-between relative overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-br from-indigo-700/80 via-indigo-900/90 to-slate-950 z-10" />
           
-          <div className="z-10">
-            <Link to="/login" className="inline-flex items-center text-indigo-100 hover:text-white transition-colors mb-20 text-xs gap-2 font-black tracking-widest uppercase">
-              <ArrowLeft className="w-4 h-4" />
-              BACK TO LOGIN
+          <div className="absolute inset-0 z-0">
+            <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-indigo-500/20 rounded-full blur-[100px]" />
+            <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-cyan-500/20 rounded-full blur-[80px]" />
+          </div>
+
+          <div className="z-20">
+            <Link to="/login" className="inline-flex items-center text-slate-400 hover:text-white transition-all mb-24 text-[9px] font-black tracking-[0.4em] uppercase group">
+              <ArrowLeft className="w-4 h-4 mr-3 group-hover:-translate-x-1 transition-transform" />
+              Return to Terminal
             </Link>
-            <BookOpen className="w-12 h-12 text-white mb-6" />
-            <h1 className="text-4xl font-black text-white mb-4 leading-tight tracking-tighter">
-              Join the <br />
-              Circle of <br />
-              <span className="text-cyan-300">Scholars</span>
+            
+            <div className="flex items-center gap-4 mb-10">
+              <div className="bg-white/10 p-3 rounded-xl border border-white/20 backdrop-blur-xl">
+                 <GraduationCap className="text-white w-6 h-6" />
+              </div>
+              <span className="text-2xl font-black text-white tracking-widest uppercase italic">Edu<span className="text-cyan-400">Flux</span></span>
+            </div>
+
+            <h1 className="text-6xl font-black text-white mb-6 leading-[0.9] tracking-tighter">
+              JOIN THE <br /><span className="text-cyan-400">ACTIVE</span> <br />NETWORK.
             </h1>
-            <p className="text-indigo-100/70 text-lg font-light leading-relaxed">
-              Create your account to start managing your academic journeys with ease and elegance.
+            <p className="text-indigo-200/60 text-base font-bold uppercase tracking-[0.2em] leading-relaxed max-w-xs">
+              Establish your administrative node within the EduFlux ecosystem.
             </p>
           </div>
           
-          <div className="flex gap-3 text-indigo-200">
-            <Sparkles className="w-5 h-5 animate-pulse" />
-            <span className="text-[10px] font-black uppercase tracking-[0.2em]">EduPortal v2.0</span>
+          <div className="z-20 flex items-center gap-4">
+            <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+            <span className="text-[10px] font-black uppercase tracking-[0.3em] text-white">Registry v2.4 Open</span>
           </div>
         </div>
 
         {/* Form panel */}
-        <div className="w-full md:w-3/5 p-8 lg:p-12 bg-slate-900/40">
-          <div className="mb-10 text-center md:text-left">
-            <h2 className="text-4xl font-black text-white mb-2 tracking-tight">Registration</h2>
-            <p className="text-slate-500 font-bold uppercase tracking-widest text-xs">Start your professional management today</p>
+        <div className="w-full lg:w-3/5 p-8 md:p-16 lg:p-20 bg-slate-950 relative overflow-hidden">
+          <div className="mb-14 relative z-10">
+            <div className="flex items-center gap-3 mb-4">
+               <div className="w-2 h-0.5 bg-indigo-500 rounded-full" />
+               <span className="text-[10px] font-black text-indigo-500 uppercase tracking-[0.4em]">Node Initialization</span>
+            </div>
+            <h2 className="text-5xl font-black text-white tracking-tighter uppercase italic leading-none">Profile <span className="text-slate-800">Establishment</span></h2>
           </div>
 
-          <AnimatePresence>
+          <AnimatePresence mode="wait">
             {error && (
-              <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} className="bg-red-500/10 border border-red-500/20 text-red-400 p-4 rounded-2xl mb-8 flex items-center gap-3">
-                <span className="text-[10px] font-black uppercase tracking-widest">Error:</span>
-                <span className="text-sm font-medium">{error}</span>
+              <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} className="bg-red-500/5 border border-red-500/20 text-red-500 p-5 rounded-2xl mb-10 flex items-center gap-4 relative z-10">
+                <XCircle className="w-5 h-5 flex-shrink-0" />
+                <span className="text-[10px] font-black uppercase tracking-widest leading-loose">{error}</span>
               </motion.div>
             )}
             {success && (
-              <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} className="bg-green-500/10 border border-green-500/20 text-green-400 p-4 rounded-2xl mb-8 flex items-center gap-3">
-                <Sparkles className="w-5 h-5" />
-                <span className="text-sm font-bold uppercase tracking-widest">{success}</span>
+              <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} className="bg-emerald-500/5 border border-emerald-500/20 text-emerald-400 p-5 rounded-2xl mb-10 flex items-center gap-4 relative z-10">
+                <CheckCircle2 className="w-5 h-5 flex-shrink-0" />
+                <span className="text-[10px] font-black uppercase tracking-widest">{success}</span>
               </motion.div>
             )}
           </AnimatePresence>
 
-          <form onSubmit={handleRegister} className="space-y-6">
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-              <div className="space-y-2">
-                <label className="text-[10px] font-black text-slate-500 uppercase tracking-widest ml-1">First Name</label>
+          <form onSubmit={handleRegister} className="space-y-8 relative z-10">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+              <div className="space-y-3">
+                <label className="text-[9px] font-black text-slate-500 uppercase tracking-[0.3em] ml-1">Identity // First Name</label>
                 <div className="relative group">
-                  <User className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-600 transition-colors group-focus-within:text-indigo-500" />
+                  <div className="absolute inset-y-0 left-6 flex items-center pointer-events-none group-focus-within:text-indigo-500 transition-colors">
+                    <User className="w-4 h-4 text-slate-600" />
+                  </div>
                   <input 
                     type="text" 
-                    placeholder="John" 
-                    className="w-full bg-slate-900/50 border border-slate-800 rounded-2xl py-4 px-12 text-lg text-white hover:border-slate-700 focus:outline-none focus:ring-2 focus:ring-indigo-500/50 focus:border-indigo-500 transition-all font-light"
+                    placeholder="FIRST_NAME" 
+                    className="w-full bg-slate-900/50 border border-white/5 rounded-2xl py-5 pl-16 pr-8 text-xs font-black text-white placeholder-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 transition-all uppercase tracking-widest"
                     value={formData.first_name}
                     onChange={(e) => setFormData({...formData, first_name: e.target.value})}
                     required
                   />
                 </div>
               </div>
-              <div className="space-y-2">
-                <label className="text-[10px] font-black text-slate-500 uppercase tracking-widest ml-1">Last Name</label>
+              <div className="space-y-3">
+                <label className="text-[9px] font-black text-slate-500 uppercase tracking-[0.3em] ml-1">Identity // Last Name</label>
                 <input 
                   type="text" 
-                  placeholder="Doe" 
-                  className="w-full bg-slate-900/50 border border-slate-800 rounded-2xl py-4 px-6 text-lg text-white hover:border-slate-700 focus:outline-none focus:ring-2 focus:ring-indigo-500/50 focus:border-indigo-500 transition-all font-light"
+                  placeholder="LAST_NAME" 
+                  className="w-full bg-slate-900/50 border border-white/5 rounded-2xl py-5 px-8 text-xs font-black text-white placeholder-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 transition-all uppercase tracking-widest"
                   value={formData.last_name}
                   onChange={(e) => setFormData({...formData, last_name: e.target.value})}
                   required
@@ -152,14 +166,16 @@ const Register = () => {
               </div>
             </div>
 
-            <div className="space-y-2">
-              <label className="text-[10px] font-black text-slate-500 uppercase tracking-widest ml-1">Email Address</label>
+            <div className="space-y-3">
+              <label className="text-[9px] font-black text-slate-500 uppercase tracking-[0.3em] ml-1">Terminal ID // Email</label>
               <div className="relative group">
-                <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-600 transition-colors group-focus-within:text-indigo-500" />
+                <div className="absolute inset-y-0 left-6 flex items-center pointer-events-none group-focus-within:text-indigo-500 transition-colors">
+                  <Mail className="w-4 h-4 text-slate-600" />
+                </div>
                 <input 
                   type="email" 
-                  placeholder="teacher@univ.edu" 
-                  className="w-full bg-slate-900/50 border border-slate-800 rounded-2xl py-4 px-12 text-lg text-white hover:border-slate-700 focus:outline-none focus:ring-2 focus:ring-indigo-500/50 focus:border-indigo-500 transition-all font-light"
+                  placeholder="ADMIN@EDUFLUX.SYS" 
+                  className="w-full bg-slate-900/50 border border-white/5 rounded-2xl py-5 pl-16 pr-8 text-xs font-black text-white placeholder-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 transition-all uppercase tracking-widest"
                   value={formData.email}
                   onChange={(e) => setFormData({...formData, email: e.target.value})}
                   required
@@ -167,19 +183,21 @@ const Register = () => {
               </div>
             </div>
 
-            <div className="space-y-2">
+            <div className="space-y-3">
               <div className="flex justify-between items-center ml-1">
-                <label className="text-[10px] font-black text-slate-500 uppercase tracking-widest">Secure Password</label>
-                <span className={`text-[10px] font-black uppercase tracking-widest ${strength.score > 2 ? 'text-emerald-500' : 'text-slate-500'}`}>
+                <label className="text-[9px] font-black text-slate-500 uppercase tracking-[0.3em]">Encryption Code // Password</label>
+                <span className={`text-[9px] font-black uppercase tracking-[0.2em] ${strength.score > 2 ? 'text-emerald-500' : 'text-slate-600'}`}>
                   {strength.label}
                 </span>
               </div>
               <div className="relative group">
-                <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-600 transition-colors group-focus-within:text-indigo-500" />
+                <div className="absolute inset-y-0 left-6 flex items-center pointer-events-none group-focus-within:text-indigo-500 transition-colors">
+                  <Lock className="w-4 h-4 text-slate-600" />
+                </div>
                 <input 
                   type={showPassword ? "text" : "password"} 
-                  placeholder="••••••••" 
-                  className="w-full bg-slate-900/50 border border-slate-800 rounded-2xl py-4 px-12 text-lg text-white hover:border-slate-700 focus:outline-none focus:ring-2 focus:ring-indigo-500/50 focus:border-indigo-500 transition-all font-light"
+                  placeholder="••••••••••••" 
+                  className="w-full bg-slate-900/50 border border-white/5 rounded-2xl py-5 pl-16 pr-14 text-xs font-black text-white placeholder-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 transition-all tracking-[0.3em]"
                   value={formData.password}
                   onChange={(e) => {
                     setFormData({...formData, password: e.target.value});
@@ -190,46 +208,42 @@ const Register = () => {
                 <button 
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-600 hover:text-indigo-400 transition-colors"
+                  className="absolute right-6 top-1/2 -translate-y-1/2 text-slate-600 hover:text-indigo-400 transition-colors"
                 >
-                  {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+                  {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                 </button>
               </div>
               
               {/* Strength Meter */}
-              <div className="flex gap-1.5 px-1 mt-2">
+              <div className="flex gap-2 px-1 mt-3">
                 {[...Array(5)].map((_, i) => (
                   <div 
                     key={i} 
-                    className={`h-1 flex-grow rounded-full transition-all duration-500 ${i < strength.score ? strength.color : 'bg-slate-800'}`} 
+                    className={`h-1 flex-grow rounded-full transition-all duration-700 ${i < strength.score ? strength.color : 'bg-slate-900'}`} 
                   />
                 ))}
               </div>
-              <p className="text-[9px] text-slate-600 font-bold uppercase tracking-tight mt-1 flex items-center gap-1">
-                <ShieldCheck className="w-3 h-3" />
-                Min 8 chars, uppercase & numbers recommended
-              </p>
             </div>
 
             <button 
               type="submit" 
               disabled={loading}
-              className="w-full bg-indigo-600 hover:bg-indigo-500 text-white py-5 rounded-2xl text-xl font-black uppercase tracking-widest mt-6 flex items-center justify-center gap-3 shadow-lg shadow-indigo-500/20 active:scale-95 transition-all disabled:opacity-50"
+              className="w-full bg-indigo-600 hover:bg-indigo-500 text-white p-6 rounded-2xl text-[10px] font-black uppercase tracking-[0.4em] mt-6 flex items-center justify-center gap-4 shadow-xl shadow-indigo-600/20 transition-all active:scale-[0.98] disabled:opacity-50"
             >
               {loading ? (
-                <div className="w-6 h-6 border-4 border-white/20 border-t-white rounded-full animate-spin" />
+                <div className="w-5 h-5 border-2 border-white/20 border-t-white rounded-full animate-spin" />
               ) : (
                 <>
-                  <UserPlus className="w-6 h-6" />
-                  Create Profile
+                  <UserPlus className="w-4 h-4" />
+                  Establish Node
                 </>
               )}
             </button>
           </form>
 
-          <div className="mt-8 text-center text-slate-500 text-[10px] font-black uppercase tracking-widest">
-            Already have an account? {' '}
-            <Link to="/login" className="text-indigo-400 font-black hover:text-indigo-300 transition-colors pb-1 border-b-2 border-transparent hover:border-indigo-400/50 ml-1">
+          <div className="mt-12 text-center text-slate-600 text-[10px] font-black uppercase tracking-[0.4em]">
+            Linked to the Network? {' '}
+            <Link to="/login" className="text-indigo-400 font-black hover:text-indigo-300 transition-all pb-1 border-b border-white/5 hover:border-indigo-400 ml-2">
               Sign In
             </Link>
           </div>

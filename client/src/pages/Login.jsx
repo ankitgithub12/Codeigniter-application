@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import api from '../api/axios';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Mail, Lock, LogIn, Sparkles, BookOpen, Eye, EyeOff } from 'lucide-react';
+import { Mail, Lock, LogIn, Sparkles, BookOpen, Eye, EyeOff, GraduationCap } from 'lucide-react';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -29,92 +29,111 @@ const Login = () => {
   };
 
   return (
-    <div className="flex min-h-screen bg-[#020617] text-white">
-      {/* Decorative Panel */}
-      <div className="hidden lg:flex lg:w-1/2 relative overflow-hidden bg-indigo-600">
-        <div className="absolute inset-0 bg-gradient-to-br from-indigo-700/80 to-purple-900/90 z-10" />
-        <div className="absolute inset-0 opacity-20 pointer-events-none">
-          <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-white/20 rounded-full blur-3xl animate-pulse" />
-          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-cyan-400/20 rounded-full blur-3xl animate-float" />
-        </div>
+    <div className="flex min-h-screen bg-[#020617] text-slate-300">
+      {/* Decorative Panel - The High-Tech "Why" */}
+      <div className="hidden lg:flex lg:w-1/2 relative overflow-hidden bg-indigo-600 p-24 flex-col justify-between border-r border-white/5">
+        <div className="absolute inset-0 bg-gradient-to-br from-indigo-700/80 via-indigo-900/90 to-slate-950 z-10" />
         
-        <div className="relative z-20 flex flex-col justify-center items-center h-full p-16 text-center">
-          <motion.div initial={{ y: 20, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.2 }} className="mb-12">
-            <div className="bg-white/10 p-5 rounded-3xl backdrop-blur-md mb-8 inline-block shadow-2xl border border-white/20">
-              <BookOpen className="w-12 h-12 text-white" />
+        {/* Animated Background Grids/Glows */}
+        <div className="absolute inset-0 z-0">
+          <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-indigo-500/20 rounded-full blur-[120px] animate-pulse" />
+          <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-cyan-500/20 rounded-full blur-[100px] animate-float" />
+          <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 contrast-150 brightness-150" />
+        </div>
+
+        <motion.div 
+          initial={{ opacity: 0, x: -50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8 }}
+          className="relative z-20"
+        >
+          <div className="flex items-center gap-4 mb-16">
+            <div className="bg-white/10 p-4 rounded-2xl border border-white/20 backdrop-blur-xl">
+               <GraduationCap className="text-white w-8 h-8" />
             </div>
-            <h1 className="text-6xl font-black text-white mb-6 leading-tight tracking-tighter">
-              Empowering <br />
-              <span className="text-cyan-300">Educators</span>
-            </h1>
-            <p className="text-indigo-100 text-lg max-w-md mx-auto font-light leading-relaxed">
-              Experience the next generation of academic management with EduPortal. 
-              Modern, fast, and beautifully designed.
-            </p>
-          </motion.div>
-          <div className="flex gap-4 mt-8 opacity-40">
-            <Sparkles className="w-5 h-5 text-indigo-200" />
-            <Sparkles className="w-3 h-3 text-indigo-200" />
-            <Sparkles className="w-4 h-4 text-indigo-200" />
+            <span className="text-3xl font-black text-white tracking-widest uppercase italic">Edu<span className="text-cyan-400">Flux</span></span>
           </div>
+          
+          <h1 className="text-7xl font-black text-white leading-[0.9] tracking-tighter mb-10">
+            CONTROL <br /><span className="text-cyan-400">EVERY</span> <br />ENTITY.
+          </h1>
+          <p className="text-indigo-200/60 text-lg font-bold uppercase tracking-[0.2em] max-w-sm leading-relaxed">
+            The next generation of acoustic-grade academic management protocols. 
+          </p>
+        </motion.div>
+
+        <div className="relative z-20 flex items-center gap-6">
+           <div className="px-5 py-2 rounded-full bg-white/5 border border-white/10 flex items-center gap-3">
+              <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+              <span className="text-[10px] font-black text-white uppercase tracking-widest">Network Active</span>
+           </div>
+           <span className="text-[10px] font-black text-indigo-400/40 uppercase tracking-[0.3em]">v4.2.0 // EST. 2026</span>
         </div>
       </div>
 
       {/* Login Form Panel */}
-      <div className="w-full lg:w-1/2 flex items-center justify-center p-8 bg-slate-950">
-        <motion.div initial={{ x: 20, opacity: 0 }} animate={{ x: 0, opacity: 1 }} transition={{ duration: 0.5 }} className="w-full max-w-md px-4">
-          <div className="mb-12 lg:hidden text-center">
-            <div className="bg-indigo-600/20 p-3 rounded-2xl backdrop-blur-md mb-4 inline-block border border-indigo-500/20">
-              <BookOpen className="w-10 h-10 text-indigo-500" />
+      <div className="w-full lg:w-1/2 flex items-center justify-center p-8 md:p-24 relative overflow-hidden">
+        {/* Mobile Logo */}
+        <div className="absolute top-12 lg:hidden">
+           <span className="text-2xl font-black text-white tracking-widest uppercase italic">Edu<span className="text-indigo-500">Flux</span></span>
+        </div>
+
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="w-full max-w-md"
+        >
+          <div className="mb-14">
+            <div className="flex items-center gap-3 mb-4">
+               <div className="w-2 h-0.5 bg-indigo-500 rounded-full" />
+               <span className="text-[10px] font-black text-indigo-500 uppercase tracking-[0.4em]">Authorization Required</span>
             </div>
-            <h2 className="text-3xl font-black text-white">EduPortal</h2>
+            <h2 className="text-5xl font-black text-white tracking-tighter uppercase italic leading-none">Identity <span className="text-slate-800">Verification</span></h2>
           </div>
 
-          <div className="mb-10 text-center lg:text-left">
-            <h2 className="text-4xl font-black text-white mb-3 tracking-tight">Sign In</h2>
-            <p className="text-slate-400 text-lg font-medium">Access your academic command center</p>
-          </div>
-
-          <AnimatePresence>
+          <AnimatePresence mode="wait">
             {error && (
-              <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} className="bg-red-500/10 border border-red-500/20 text-red-400 p-4 rounded-2xl mb-8 flex items-center gap-3">
-                <div className="w-2 h-2 rounded-full bg-red-500" />
-                <span className="text-sm font-bold uppercase tracking-widest">{error}</span>
+              <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} className="bg-red-500/5 border border-red-500/20 text-red-500 p-5 rounded-2xl mb-10 flex items-center gap-4">
+                <div className="w-1.5 h-1.5 rounded-full bg-red-600 animate-pulse" />
+                <span className="text-[10px] font-black uppercase tracking-widest leading-loose">{error}</span>
               </motion.div>
             )}
           </AnimatePresence>
 
-          <form onSubmit={handleLogin} className="space-y-6">
-            <div className="space-y-2">
-              <label className="text-xs font-black text-slate-500 ml-1 uppercase tracking-widest flex items-center gap-2">
-                <Mail className="w-4 h-4" />
-                Email Address
-              </label>
-              <input 
-                type="email" 
-                placeholder="teacher@univ.edu" 
-                className="w-full bg-slate-900/50 border border-slate-800 rounded-2xl py-4 px-6 text-lg text-white hover:border-slate-700 focus:outline-none focus:ring-2 focus:ring-indigo-500/50 focus:border-indigo-500 transition-all font-light placeholder:text-slate-700"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-              />
+          <form onSubmit={handleLogin} className="space-y-8">
+            <div className="space-y-3">
+              <label className="text-[9px] font-black text-slate-500 uppercase tracking-[0.3em] ml-1">Terminal ID // Email</label>
+              <div className="relative group">
+                <div className="absolute inset-y-0 left-6 flex items-center pointer-events-none group-focus-within:text-indigo-500 transition-colors">
+                  <Mail className="w-4 h-4 text-slate-600" />
+                </div>
+                <input 
+                  type="email" 
+                  placeholder="ADMIN@EDUFLUX.SYS" 
+                  className="w-full bg-slate-900/50 border border-white/5 rounded-2xl py-5 pl-16 pr-8 text-xs font-black text-white placeholder-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 transition-all uppercase tracking-widest"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                />
+              </div>
             </div>
 
-            <div className="space-y-2">
+            <div className="space-y-3">
               <div className="flex justify-between items-center ml-1">
-                <label className="text-xs font-black text-slate-500 uppercase tracking-widest flex items-center gap-2">
-                  <Lock className="w-4 h-4" />
-                  Password
-                </label>
-                <Link to="/forgot-password" size={20} className="text-[10px] text-indigo-400 hover:text-indigo-300 font-black transition-colors uppercase tracking-widest">
-                  FORGOT?
+                <label className="text-[9px] font-black text-slate-500 uppercase tracking-[0.3em]">Access Code // Password</label>
+                <Link to="/forgot-password" className="text-[9px] text-indigo-500 hover:text-indigo-400 font-black transition-colors uppercase tracking-[0.2em] border-b border-transparent hover:border-indigo-500/50 pb-0.5">
+                  Forgot Code?
                 </Link>
               </div>
               <div className="relative group">
+                <div className="absolute inset-y-0 left-6 flex items-center pointer-events-none group-focus-within:text-indigo-500 transition-colors">
+                  <Lock className="w-4 h-4 text-slate-600" />
+                </div>
                 <input 
                   type={showPassword ? "text" : "password"} 
-                  placeholder="••••••••" 
-                  className="w-full bg-slate-900/50 border border-slate-800 rounded-2xl py-4 px-6 text-lg text-white hover:border-slate-700 focus:outline-none focus:ring-2 focus:ring-indigo-500/50 focus:border-indigo-500 transition-all font-light placeholder:text-slate-700"
+                  placeholder="••••••••••••" 
+                  className="w-full bg-slate-900/50 border border-white/5 rounded-2xl py-5 pl-16 pr-14 text-xs font-black text-white placeholder-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 transition-all tracking-[0.3em]"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   required
@@ -122,9 +141,9 @@ const Login = () => {
                 <button 
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-600 hover:text-indigo-400 transition-colors"
+                  className="absolute right-6 top-1/2 -translate-y-1/2 text-slate-600 hover:text-indigo-400 transition-colors"
                 >
-                  {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+                  {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                 </button>
               </div>
             </div>
@@ -132,23 +151,23 @@ const Login = () => {
             <button 
               type="submit" 
               disabled={loading}
-              className="w-full bg-indigo-600 hover:bg-indigo-500 text-white py-5 rounded-2xl text-xl font-black uppercase tracking-widest mt-6 flex items-center justify-center gap-3 shadow-lg shadow-indigo-500/20 active:scale-95 transition-all disabled:opacity-50"
+              className="w-full bg-indigo-600 hover:bg-indigo-500 text-white p-6 rounded-2xl text-[10px] font-black uppercase tracking-[0.4em] mt-6 flex items-center justify-center gap-4 shadow-xl shadow-indigo-600/20 transition-all active:scale-[0.98] disabled:opacity-50"
             >
               {loading ? (
-                <div className="w-6 h-6 border-4 border-white/20 border-t-white rounded-full animate-spin" />
+                <div className="w-5 h-5 border-2 border-white/20 border-t-white rounded-full animate-spin" />
               ) : (
                 <>
-                  <LogIn className="w-6 h-6" />
-                  Enter Portal
+                  <LogIn className="w-4 h-4" />
+                  Initialize Session
                 </>
               )}
             </button>
           </form>
 
-          <footer className="mt-12 text-center text-slate-500 font-bold uppercase tracking-widest text-xs">
-            New to the portal? {' '}
-            <Link to="/register" className="text-indigo-400 font-black hover:text-indigo-300 transition-colors border-b-2 border-transparent hover:border-indigo-400/50 pb-1 ml-1">
-              Create Account
+          <footer className="mt-14 pt-8 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-6">
+            <span className="text-[9px] text-slate-600 font-black uppercase tracking-[0.2em]">New to the Network?</span>
+            <Link to="/register" className="px-6 py-3 rounded-xl bg-white/2 border border-white/5 text-[9px] font-black text-white uppercase tracking-[0.2em] hover:bg-white/5 transition-all">
+              Establish Profile
             </Link>
           </footer>
         </motion.div>

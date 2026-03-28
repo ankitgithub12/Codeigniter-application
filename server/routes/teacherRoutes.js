@@ -10,7 +10,7 @@ router.get('/', async (req, res) => {
     const teachers = await sql`
       SELECT t.*, u.first_name, u.last_name, u.email
       FROM teachers t
-      JOIN users u ON t.user_id = u.id
+      JOIN auth_user u ON t.user_id = u.id
       ORDER BY t.created_at DESC
     `;
     
@@ -43,7 +43,7 @@ router.post('/register-teacher', async (req, res) => {
       const hashedPassword = await bcrypt.hash(password, salt);
       
       const [user] = await sql`
-        INSERT INTO users (email, password, first_name, last_name)
+        INSERT INTO auth_user (email, password, first_name, last_name)
         VALUES (${email}, ${hashedPassword}, ${first_name}, ${last_name})
         RETURNING id
       `;

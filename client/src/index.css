@@ -3,40 +3,58 @@
 :root {
   --primary: #6366f1;
   --bg-dark: #020617;
+  --indigo-glow: rgba(99, 102, 241, 0.15);
+  --cyan-glow: rgba(34, 211, 238, 0.15);
+  --emerald-glow: rgba(16, 185, 129, 0.15);
+  --amber-glow: rgba(245, 158, 11, 0.15);
 }
 
 body {
   background-color: #020617;
   color: #f8fafc;
   margin: 0;
-  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-family: 'Outfit', 'Inter', system-ui, -apple-system, sans-serif;
   scrollbar-gutter: stable;
+  overflow-x: hidden;
 }
 
 .glass {
-  background: rgba(15, 23, 42, 0.6);
-  backdrop-filter: blur(12px) saturate(150%);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(15, 23, 42, 0.4);
+  backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
 }
 
 .glass-header {
-  background: rgba(2, 6, 23, 0.85);
-  backdrop-filter: blur(8px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  background: rgba(2, 6, 23, 0.7);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.03);
 }
 
-/* Custom Utilities that Tailwind might miss if config is flaky */
-@keyframes float {
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
-  100% { transform: translateY(0px); }
+.card-glow-indigo:hover { box-shadow: 0 0 25px 0 var(--indigo-glow); }
+.card-glow-cyan:hover { box-shadow: 0 0 25px 0 var(--cyan-glow); }
+.card-glow-emerald:hover { box-shadow: 0 0 25px 0 var(--emerald-glow); }
+.card-glow-amber:hover { box-shadow: 0 0 25px 0 var(--amber-glow); }
+
+@keyframes pulse-ring {
+  0% { transform: scale(0.8); opacity: 0.5; }
+  100% { transform: scale(2.4); opacity: 0; }
 }
 
-.animate-float {
-  animation: float 6s ease-in-out infinite;
+.animate-pulse-ring {
+  animation: pulse-ring 2s cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite;
 }
 
-::-webkit-scrollbar { width: 6px; }
+@keyframes sync-glow {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.8; }
+}
+
+.animate-sync {
+  animation: sync-glow 2s ease-in-out infinite;
+}
+
+::-webkit-scrollbar { width: 5px; }
 ::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 10px; }
-::-webkit-scrollbar-thumb:hover { background: #334155; }
+::-webkit-scrollbar-thumb { background: #334155; border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: #475569; }

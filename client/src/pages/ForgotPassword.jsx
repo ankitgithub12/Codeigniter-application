@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import api from '../api/axios';
-import { motion } from 'framer-motion';
-import { Mail, ArrowLeft, Send } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Mail, ArrowLeft, Send, ShieldCheck, XCircle, CheckCircle2 } from 'lucide-react';
 
 const ForgotPassword = () => {
   const [email, setEmail] = useState('');
@@ -26,43 +26,64 @@ const ForgotPassword = () => {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen p-4">
+    <div className="flex justify-center items-center min-h-screen p-4 md:p-8 bg-[#020617] text-slate-300">
       <motion.div 
-        initial={{ opacity: 0, scale: 0.95 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.5 }}
-        className="glass w-full max-w-md p-8 shadow-2xl"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+        className="glass w-full max-w-lg rounded-[40px] border-white/5 p-10 md:p-16 relative overflow-hidden group shadow-2xl"
       >
-        <Link to="/login" className="inline-flex items-center text-slate-400 hover:text-white transition-colors mb-6 text-sm gap-2">
+        {/* Decorative elements */}
+        <div className="absolute top-0 right-0 p-12 opacity-[0.02] group-hover:opacity-[0.05] transition-opacity duration-1000">
+          <Mail className="w-64 h-64 -mr-24 -mt-24 rotate-12" />
+        </div>
+        
+        <Link to="/login" className="inline-flex items-center gap-3 text-[10px] font-black text-slate-500 hover:text-indigo-400 transition-all uppercase tracking-[0.3em] mb-12 relative z-10">
           <ArrowLeft className="w-4 h-4" />
-          Back to Login
+          Return to Terminal
         </Link>
-        <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold text-white mb-2 tracking-tight">Recover</h1>
-          <p className="text-slate-400">Enter your email for reset instructions</p>
+
+        <div className="relative z-10 mb-12">
+          <div className="flex items-center gap-2 mb-4">
+            <div className="px-2.5 py-1 rounded-lg bg-indigo-500/10 border border-indigo-500/20 text-[9px] font-black text-indigo-400 uppercase tracking-widest flex items-center gap-2">
+              <ShieldCheck className="w-3.5 h-3.5" /> Protocol: Recovery
+            </div>
+            <div className="w-1.5 h-1.5 rounded-full bg-indigo-500 animate-pulse" />
+          </div>
+          <h1 className="text-5xl font-black text-white tracking-tighter uppercase italic leading-none mb-4">
+            Identity <span className="text-indigo-500">Restore</span>
+          </h1>
+          <p className="text-[11px] text-slate-500 font-bold uppercase tracking-[0.2em] leading-relaxed max-w-sm">
+            Initialize sequential recovery protocols. Enter your verified email node to transmit a secure reset link.
+          </p>
         </div>
 
-        {error && (
-          <div className="bg-red-500/20 border border-red-500/50 text-red-200 p-3 rounded-xl mb-6 text-sm">
-            {error}
-          </div>
-        )}
+        <AnimatePresence mode="wait">
+          {error && (
+            <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} className="bg-red-500/5 border border-red-500/20 text-red-500 p-5 rounded-2xl mb-10 flex items-center gap-4 relative z-10">
+              <XCircle className="w-5 h-5 flex-shrink-0" />
+              <span className="text-[10px] font-black uppercase tracking-widest leading-loose">{error}</span>
+            </motion.div>
+          )}
+          {success && (
+            <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} className="bg-emerald-500/5 border border-emerald-500/20 text-emerald-400 p-5 rounded-2xl mb-10 flex items-center gap-4 relative z-10">
+              <CheckCircle2 className="w-5 h-5 flex-shrink-0" />
+              <span className="text-[10px] font-black uppercase tracking-widest">{success}</span>
+            </motion.div>
+          )}
+        </AnimatePresence>
 
-        {success && (
-          <div className="bg-green-500/20 border border-green-500/50 text-green-200 p-3 rounded-xl mb-6 text-sm">
-            {success}
-          </div>
-        )}
-
-        <form onSubmit={handleForgot} className="space-y-6">
-          <div className="space-y-2">
-            <label className="text-sm font-medium text-slate-300 ml-1">Account Email</label>
+        <form onSubmit={handleForgot} className="space-y-8 relative z-10">
+          <div className="space-y-3">
+            <label className="text-[9px] font-black text-slate-500 uppercase tracking-[0.3em] ml-1">Network Identity // Email</label>
             <div className="relative group">
-              <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-500 group-focus-within:text-purple-400 transition-colors" />
+              <div className="absolute inset-y-0 left-6 flex items-center pointer-events-none transition-transform group-hover:scale-110">
+                <Mail className="w-4 h-4 text-slate-600 group-focus-within:text-indigo-400" />
+              </div>
               <input 
                 type="email" 
-                placeholder="teacher@university.edu" 
-                className="w-full bg-slate-800/50 border border-slate-700/50 rounded-xl py-3 pl-11 pr-4 text-white focus:outline-none focus:ring-2 focus:ring-purple-500/50 focus:border-purple-500 transition-all"
+                placeholder="ADMIN@VERIFIED.HOST" 
+                className="w-full bg-slate-900/50 border border-white/5 rounded-2xl py-5 pl-16 pr-8 text-xs font-black text-white placeholder-slate-800 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 transition-all uppercase tracking-widest"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
@@ -73,16 +94,24 @@ const ForgotPassword = () => {
           <button 
             type="submit" 
             disabled={loading}
-            className="w-full bg-indigo-600 hover:bg-indigo-500 text-white py-4 rounded-xl text-lg font-bold flex items-center justify-center gap-2 transition-all active:scale-95 disabled:opacity-50"
+            className="w-full bg-indigo-600 hover:bg-indigo-500 text-white p-5 rounded-2xl text-[10px] font-black uppercase tracking-[0.4em] flex items-center justify-center gap-4 shadow-xl shadow-indigo-600/20 transition-all active:scale-95 disabled:opacity-50"
           >
-            {loading ? 'Sending...' : (
+            {loading ? (
+              <div className="w-4 h-4 border-2 border-white/20 border-t-white rounded-full animate-spin" />
+            ) : (
               <>
-                <Send className="w-5 h-5" />
-                Send Reset Link
+                <Send className="w-4 h-4" />
+                Transmit Link
               </>
             )}
           </button>
         </form>
+
+        <div className="mt-12 flex items-center justify-center gap-4 border-t border-white/5 pt-8 opacity-40">
+           <div className="w-1.5 h-1.5 rounded-full bg-slate-700" />
+           <span className="text-[8px] font-black text-slate-600 uppercase tracking-[0.4em]">Secure Link Transmission v4 // Active</span>
+           <div className="w-1.5 h-1.5 rounded-full bg-slate-700" />
+        </div>
       </motion.div>
     </div>
   );
