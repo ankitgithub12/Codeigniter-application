@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import axios from 'axios';
+import api from '../api/axios';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowLeft, UserPlus, GraduationCap, Calendar, User, Mail, Lock, Sparkles, ChevronRight, CheckCircle2 } from 'lucide-react';
 
@@ -23,7 +23,7 @@ const AddTeacher = () => {
     e.preventDefault();
     setLoading(true);
     try {
-      await axios.post('http://localhost:5000/api/teachers/register-teacher', formData);
+      await api.post('/teachers/register-teacher', formData);
       navigate('/dashboard');
     } catch (err) {
       setError(err.response?.data?.error || 'Failed to sync teacher record');

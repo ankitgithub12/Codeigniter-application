@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import axios from 'axios';
+import api from '../api/axios';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Mail, Lock, User, UserPlus, ArrowLeft, Sparkles, BookOpen, Eye, EyeOff, ShieldCheck, CheckCircle2, XCircle } from 'lucide-react';
 
@@ -56,7 +56,7 @@ const Register = () => {
     setLoading(true);
     setError('');
     try {
-      await axios.post('http://localhost:5000/api/auth/register', formData);
+      await api.post('/auth/register', formData);
       setSuccess('Account created! Redirecting to login...');
       setTimeout(() => navigate('/login'), 2000);
     } catch (err) {
